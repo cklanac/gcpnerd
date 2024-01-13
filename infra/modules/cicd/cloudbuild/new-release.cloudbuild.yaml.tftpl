@@ -1,0 +1,27 @@
+steps:
+  # Skaffold yaml
+  - name: 'ubuntu'
+    id: 'Skaffold yaml config'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+        echo "$${_SKAFFOLD_CONFIG}" > /workspace/skaffold.yaml
+  - name: 'ubuntu'
+    id: 'Run yaml config'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+        echo "$${_RUN_CONFIG}" > /workspace/app-prod.yaml
+  - name: gcr.io/cloud-builders/gcloud
+    id: 'Create new release on Cloud Deploy'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+        gcloud deploy releases create app-release-$(echo $${BUILD_ID} | cut -f1 -d'-') \
+        --project=$${PROJECT_ID} \
+        --region=$${_REGION} \
+        --delivery-pipeline=$${_PIPELINE_NAME} \
+        --images=app-image=$${_IMAGE}:$${SHORT_SHA}

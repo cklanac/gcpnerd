@@ -30,7 +30,23 @@ https://console.cloud.google.com/iam-admin/serviceaccounts
 - Add it to the `versions.tf` file `provider.credentials` section
 
 ```
-cd ./infra/apis
+cd ./infra/app
+terraform init
+terraform plan
+terraform apply
+```
+
+## CICD
+
+- Connect Google Cloud Project to Repo
+
+  - Choose the 'global' region
+  - Select the "Done" button (not 'Create Trigger')
+
+- https://console.cloud.google.com/cloud-build/triggers/connect
+
+```
+cd ./infra/app
 terraform init
 terraform plan
 terraform apply

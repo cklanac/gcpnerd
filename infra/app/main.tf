@@ -1,5 +1,5 @@
 locals {
-  nextauth_url      = "http://${google_compute_global_address.default.address}"
+  nextauth_url = "http://${google_compute_global_address.default.address}"
   # firestore_enabled = length(data.google_cloud_asset_resources_search_all.firestore_database.results) == 1 ? true : false
 }
 
@@ -324,4 +324,12 @@ resource "google_firestore_database" "database" {
   # depends_on = [
   #   time_sleep.project_services
   # ]
+}
+
+
+module "cicd_pipeline" {
+  source                = "../modules/cicd"
+  project_id            = var.project_id
+  run_service_name      = var.deployment_name
+  github_repository_url = var.github_repository_url
 }

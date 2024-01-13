@@ -20,6 +20,7 @@ module "project_services" {
     "secretmanager.googleapis.com",
     "serviceusage.googleapis.com",
     "storage.googleapis.com",
-    "artifactregistry.googleapis.com"
+    "artifactregistry.googleapis.com",
+    "clouddeploy.googleapis.com",
   ]
 }

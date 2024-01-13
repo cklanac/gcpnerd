@@ -4,13 +4,13 @@ variable "project_id" {
 }
 
 variable "region" {
-  type        = string
+  type = string
   # default     = "us-central1"
   description = "Google Cloud region"
 }
 
 variable "zone" {
-  type        = string
+  type = string
   # default     = "us-central1-C"
   description = "Google Cloud zone"
 }
@@ -43,4 +43,9 @@ variable "init_firestore" {
   type        = bool
   description = "Whether or not to initialize a Firestore instance."
   default     = true
+}
+
+variable "github_repository_url" {
+  type        = string
+  description = "URL of connected GitHub repository (https://github.com/repo_owner/repo_name)"
 }
